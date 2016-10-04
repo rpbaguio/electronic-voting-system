@@ -49,8 +49,11 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+*/node_modules/project-task-runner/node_modules/*
 jspm_packages
+
+#SASS Cache
+.sass-cache
 
 # Optional npm cache directory
 .npm
