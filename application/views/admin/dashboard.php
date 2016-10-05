@@ -194,7 +194,7 @@
               datasets: [
                   {
                       label: "Month",
-                      data: [5, 15, 10, 30, 35, 40, 25, 60, 60, 70, 75, 90],
+                      data: [5, 15, 10, 25, 35, 40, 25, 60, 60, 70, 75, 90],
                       fill: true,
                       lineTension: 0.25,
                       backgroundColor: "rgba(240, 173, 78, .25)",

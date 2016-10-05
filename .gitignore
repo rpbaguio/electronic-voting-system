@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/codeigniter,node,phpstorm
 
 ### CodeIgniter ###
@@ -17,6 +16,8 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 
+### Assets ###
+assets/img/misc/*
 
 ### Node ###
 # Logs
