@@ -1057,6 +1057,12 @@ body {
   text-transform: uppercase;
 }
 
+/* Footer*/
+footer {
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
 /* Chart */
 #chart-wrapper .panel-default {
   border-color: #ccc;

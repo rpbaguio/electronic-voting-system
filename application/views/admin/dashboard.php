@@ -53,6 +53,9 @@
     </div>
 </div>
 
+<!-- Footer -->
+<?= $this->load->view('_shared/footer', '', true) ?>
+
 <!-- jQuery -->
 <script type="text/javascript" src="<?= base_url('assets/script/jquery-2.1.4.min.js') ?>"></script>
 
@@ -246,3 +249,6 @@
         navbar_affix();
     });
 </script>
+
+</body>
+</html>
