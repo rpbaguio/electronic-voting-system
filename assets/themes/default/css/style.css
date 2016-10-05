@@ -883,28 +883,6 @@ body {
 #dashboard .panel-default .panel-body .table tbody tr td .btn {
   text-transform: uppercase;
 }
-#dashboard .panel-default .panel-body .table tbody tr td .option {
-  padding: 0;
-  margin: 0;
-  line-height: 0;
-  text-align: center;
-}
-#dashboard .panel-default .panel-body .table tbody tr td .option .btn-circle {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  font-size: 22px;
-  font-weight: lighter;
-  line-height: 0;
-  border-top-left-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
 #dashboard .panel-default .panel-body .table tbody tr td .btn-danger-custom {
   display: inline;
   padding: .3em .6em;
@@ -1038,6 +1016,18 @@ body {
   background-color: #fceedb;
   border-left: 4px solid #f2b866;
 }
+#dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(2), #dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(1) {
+  text-align: center;
+}
+#dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(2) a, #dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(1) a {
+  display: block;
+}
+#dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(2) a {
+  color: #337ab7;
+}
+#dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(1) a {
+  color: #d9534f;
+}
 #dashboard .panel-default .panel-body .alert {
   border: none;
   border-left: 3px solid;
@@ -1124,9 +1114,6 @@ body {
 /* Data Tables */
 #datatables thead th {
   border-color: #ddd;
-}
-#datatables tbody tr td:first-child {
-  text-align: center;
 }
 #datatables tbody tr td {
   max-width: 100px;

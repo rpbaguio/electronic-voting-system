@@ -20,8 +20,7 @@
                     <div class="panel-heading">
                         <div class="btn-group-wrapper pull-right">
                             <div class="btn-group">
-                                <a class="btn btn-default" data-toggle="modal" data-param="" href="#add-person"><i class="material-icons md-18">person_add</i></a>
-                                <a class="btn btn-default" data-toggle="modal" data-param="" href="javascript:void(0)"><i class="material-icons md-18">group_add</i></a>
+                                <a class="btn btn-default" data-toggle="modal" href="#add-person"><i class="material-icons md-18">person_add</i></a>
                             </div>
                         </div>
                         List of Persons
@@ -30,13 +29,14 @@
                         <table id="datatables" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Gender</th>
                                 <th>Is Candidate?</th>
                                 <th>Is Validated?</th>
                                 <th>Is Voted?</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                         </table>
@@ -70,23 +70,23 @@
                   <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
-                                    <div id="first-name" class="form-group">
-                                        <label class="control-label">First Name<span class="important">*</span></label>
-                                        <input type="text" class="form-control" name="first_name" value="<?= set_value('first_name') ?>" placeholder="">
-                                    </div>
+                                <div id="first-name" class="form-group">
+                                    <label class="control-label">First Name<span class="important">*</span></label>
+                                    <input type="text" class="form-control" name="first_name" value="<?= set_value('first_name') ?>" placeholder="">
                                 </div>
+                            </div>
                             <div class="col-md-12">
-                                    <div id="last-name" class="form-group">
-                                        <label class="control-label">Last Name<span class="important">*</span></label>
-                                        <input type="text" class="form-control" name="last_name" value="<?= set_value('last_name') ?>" placeholder="">
-                                    </div>
+                                <div id="last-name" class="form-group">
+                                    <label class="control-label">Last Name<span class="important">*</span></label>
+                                    <input type="text" class="form-control" name="last_name" value="<?= set_value('last_name') ?>" placeholder="">
                                 </div>
+                            </div>
                             <div class="col-md-12">
-                                    <div id="birth-date" class="form-group">
-                                        <label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
-                                        <input type="text" class="form-control datetime-picker date-masking" name="birth_date" value="<?= set_value('birth_date') ?>" placeholder="">
-                                    </div>
+                                <div id="birth-date" class="form-group">
+                                    <label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
+                                    <input type="text" class="form-control datetime-picker date-masking" name="birth_date" value="<?= set_value('birth_date') ?>" placeholder="">
                                 </div>
+                            </div>
                             <div class="col-md-12">
                                 <div id="date-registered" class="form-group">
                                     <label class="control-label">Date Registered</label>
@@ -125,7 +125,7 @@
 <!-- Modal (Add Person) -->
 <div class="modal fade" id="add-person" data-backdrop="static" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -141,25 +141,25 @@
                 <div id="ajax-response-add"></div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div id="first-name" class="form-group">
                             <label class="control-label">First Name<span class="important">*</span></label>
                             <input type="text" class="form-control" name="first_name" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div id="last-name" class="form-group">
                             <label class="control-label">Last Name<span class="important">*</span></label>
                             <input type="text" class="form-control" name="last_name" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div id="birth-date" class="form-group">
                             <label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
                             <input type="text" class="form-control datetime-picker date-masking" name="birth_date" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div id="gender" class="form-group">
                             <label class="control-label">Gender<span class="important">*</span></label>
                             <select class="form-control" name="gender">
@@ -225,12 +225,6 @@
                     "type": "POST"
                 },
                 "columns": [
-                    {
-                        data: "person_id",
-                        mRender: function (data) {
-                            return '<a data-toggle="modal" data-param="' + data + '" href="#update-person-info">' + data + '</a>';
-                        }
-                    },
                     {data: "first_name"},
                     {data: "last_name"},
                     {
@@ -257,12 +251,26 @@
                         mRender: function (data) {
                             return ((data == 1) ? '<span class="label label-success">yes</span>' : '<span class="label label-danger">no</span>');
                         }
+                    },
+                    {
+                        searchable: false,
+                        data: "person_id",
+                        mRender: function (data) {
+                            return '<a data-toggle="modal" data-param="' + data + '" href="#update-person-info"><i class="material-icons md-18">mode_edit</i></a>';
+                        }
+                    },
+                    {
+                        searchable: false,
+                        data: "person_id",
+                        mRender: function (data) {
+                            return '<a data-toggle="modal" data-param="' + data + '" href="#"><i class="material-icons md-18">remove_circle_outline</i></a>';
+                        }
                     }
                 ],
                 "lengthMenu": [[10, 25, 50, 75, 100, -1], [10, 25, 50, 75, 100, "All"]],
-                "order": [[0, "desc"]],
+                "order": [[1, "asc"]],
                 "columnDefs": [
-                    {"orderable": false, "targets": []}
+                    {"orderable": false, "targets": [6, 7]}
                 ]
             });
             var tableTools = new $.fn.dataTable.TableTools(table, {

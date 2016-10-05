@@ -37,6 +37,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Line Chart
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="line-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,7 +116,7 @@
                       }
                     ]
                 }
-                let myChart = new Chart(ctx, {
+                var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: chart_data,
                     options: {
@@ -173,6 +183,53 @@
           });
         }
 
+        // GET: Line Chart
+        var line = function() {
+
+          var data = {
+              labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+              datasets: [
+                  {
+                      label: "Month",
+                      data: [5, 15, 10, 30, 35, 40, 25, 60, 60, 70, 75, 90],
+                      fill: true,
+                      lineTension: 0.25,
+                      backgroundColor: "rgba(240, 173, 78, .25)",
+                      borderColor: "rgba(240, 173, 78, 1)",
+                      borderWidth: 2,
+                      borderCapStyle: 'butt',
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: 'miter',
+                      pointStyle: "circle",
+                      pointBorderColor: "rgba(240, 173, 78, 1)",
+                      pointBackgroundColor: "rgba(240, 173, 78, 1)",
+                      pointBorderWidth: 3,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "rgba(240, 173, 78, 1)",
+                      pointHoverBorderColor: "#fff",
+                      pointHoverBorderWidth: 3,
+                      pointRadius: 2,
+                      pointHitRadius: 10,
+                      spanGaps: true
+                  }
+              ]
+          };
+
+          var ctx = $('#line-chart');
+          var myLineChart = new Chart(ctx, {
+              type: 'line',
+              data: data,
+              options: {
+                  scales: {
+                      yAxes: [{
+                          stacked: true
+                      }]
+                  }
+              }
+          });
+        }
+
         // Navbar Affix
         var navbar_affix = function() {
             $('.navbar-affix').affix({
@@ -185,6 +242,7 @@
         active_list();
         gender();
         status();
+        line();
         navbar_affix();
     });
 </script>
