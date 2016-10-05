@@ -1,1 +1,2 @@
-# Web-based Electronic Voting System (EVS)
+# EVS
+### Web-based Electronic Voting System (EVS)
