@@ -6,7 +6,7 @@
             <span class="icon-bar middle-bar"></span>
             <span class="icon-bar bottom-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?= base_url() ?>">EVS</a>
+        <a class="navbar-brand" href="<?= base_url() ?>">EVS<sup>&reg;</sup></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">

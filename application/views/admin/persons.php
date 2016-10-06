@@ -288,14 +288,14 @@
 
         // GET: View Person info
         var view_person_info = function() {
-
-            // Reset form
-            var reset = function() {
-                $('#update-person-info').find('form')[0].reset();
-                $('#update-person-info .form-group').removeClass('has-error');
-            }
-
             $('#update-person-info').on('show.bs.modal', function (e) {
+
+                // Reset form
+                var reset = function() {
+                    $('#update-person-info #ajax-response-update').empty();
+                    $('#update-person-info').find('form')[0].reset();
+                    $('#update-person-info .form-group').removeClass('has-error');
+                }
 
                 // Reset form
                 reset();
@@ -351,6 +351,7 @@
 
         // POST: Update Person info
         var update_person_info = function() {
+
             $('form.update-person-info-form').on('submit', function (e) {
 
                 var url = '<?php echo base_url('admin/update_person_info'); ?>';
