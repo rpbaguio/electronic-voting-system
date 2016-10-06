@@ -17,7 +17,7 @@ application/logs/*
 /vendor/
 
 ### Assets ###
-assets/img/misc/*
+assets/img/misc/*-qrcode.png
 
 ### Node ###
 # Logs
