@@ -183,6 +183,40 @@
     </div>
 </div>
 
+<!-- Modal (Delete Person) -->
+<div class="modal fade" id="delete-person" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+            </div>
+            <?php echo form_open('admin/delete_person', array('class' => 'delete-person-form')) ?>
+            <div class="modal-body">
+
+                <input type="hidden" name="id" value="">
+                <div id="ajax-preloader"></div>
+                <div id="ajax-response-update"></div>
+                <h4>Are you sure you want to delete this record?</h4>
+                <hr/>
+                <ul>
+                    <li>If yes, click Delete to confirm.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button type="submit" class="btn btn-lg btn-danger btn-rounded-corner">Delete</button>
+                    <button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            <?php echo form_close(); ?>
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 <?= $this->load->view('_shared/footer', '', true) ?>
 
@@ -266,7 +300,7 @@
                         searchable: false,
                         data: "person_id",
                         mRender: function (data) {
-                            return '<a data-toggle="modal" data-param="' + data + '" href="#"><i class="material-icons md-18">remove_circle_outline</i></a>';
+                            return '<a data-toggle="modal" data-param="' + data + '" href="#delete-person"><i class="material-icons md-18">remove_circle_outline</i></a>';
                         }
                     }
                 ],
@@ -316,7 +350,7 @@
                     cache: false,
                     processData: false,
                     beforeSend: function () {
-                        $('#update-person-info #ajax-preloader').html('<p>loading...</p>').show();
+                        $('#update-person-info #ajax-preloader').html('<p></p>').show();
                     },
                     success: function (data) {
 
@@ -324,7 +358,7 @@
 
                         if (res) {
                             // Hide preloader.
-                            $('#update-person-info #ajax-preloader').html('<p>loading...</p>').hide('fast');
+                            $('#update-person-info #ajax-preloader').html('<p></p>').hide('fast');
 
                             // Populate form
                             $('#update-person-info input:hidden').val(res.id);
@@ -351,7 +385,6 @@
 
         // POST: Update Person info
         var update_person_info = function() {
-
             $('form.update-person-info-form').on('submit', function (e) {
 
                 var url = '<?php echo base_url('admin/update_person_info'); ?>';
@@ -369,7 +402,7 @@
                     cache: false,
                     processData: false,
                     beforeSend: function () {
-                        $('#update-person-info #ajax-preloader').html('<p>loading...</p>').show();
+                        $('#update-person-info #ajax-preloader').html('<p></p>').show();
                     },
                     success: function (data) {
 
@@ -378,7 +411,7 @@
                         if (res.status == true) {
 
                             // Hide preloader.
-                            $('#update-person-info #ajax-preloader').html('<p>loading...</p>').hide('fast');
+                            $('#update-person-info #ajax-preloader').html('<p></p>').hide('fast');
 
                             // Success msg response
                             $('#update-person-info #ajax-response-update').html(res.msg);
@@ -391,7 +424,7 @@
 
                         } else {
                             // Hide preloader.
-                            $('#update-person-info #ajax-preloader').html('<p>loading...</p>').hide('fast');
+                            $('#update-person-info #ajax-preloader').html('<p></p>').hide('fast');
 
                             // Error msg response
                             $('#update-person-info #ajax-response-update').html(res.msg);
@@ -434,7 +467,7 @@
                     cache: false,
                     processData: false,
                     beforeSend: function () {
-                        $('#add-person #ajax-preloader').html('<p>loading...</p>').show();
+                        $('#add-person #ajax-preloader').html('<p></p>').show();
                     },
                     success: function (data) {
 
@@ -443,7 +476,7 @@
                         if (res.status === true) {
 
                             // Hide preloader
-                            $('#add-person #ajax-preloader').html('<p>loading...</p>').hide('fast');
+                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
 
                             // Success msg response
                             $('#add-person #ajax-response-add').html(res.msg).show();
@@ -460,7 +493,7 @@
                             $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
                         } else {
                             // Hide preloader.
-                            $('#add-person #ajax-preloader').html('<p>loading...</p>').hide('fast');
+                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
 
                             // Error message response.
                             $('#add-person #ajax-response-add').html(res.msg).show();
@@ -468,6 +501,83 @@
                             ($('#add-person #first-name > input').val().length <= 0) ? $('#add-person #first-name').addClass('has-error') : $('#add-person #first-name').removeClass('has-error');
                             ($('#add-person #last-name > input').val().length <= 0) ? $('#add-person #last-name').addClass('has-error') : $('#add-person #last-name').removeClass('has-error');
                             ($('#add-person #gender > input').val().length <= 0) ? $('#add-person #gender').addClass('has-error') : $('#add-person #gender').removeClass('has-error');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // For debugging
+                        console.log('The following error occurred: ' + textStatus, errorThrown);
+                    }
+                });
+
+                e.preventDefault();
+            });
+        }
+
+        // POST: Delete Person
+        var delete_person = function() {
+
+            $('#delete-person').on('show.bs.modal', function (e) {
+
+                // Reset form
+                var reset = function() {
+                    $('#delete-person #ajax-response-update').empty();
+                    $('#delete-person').find('form')[0].reset();
+                }
+
+                // Reset form
+                reset();
+
+                var target = $(e.relatedTarget);
+                var id = target.data('param');
+
+                $('input:hidden').val(id);
+
+            });
+
+            $('form.delete-person-form').on('submit', function (e) {
+
+                var url = '<?php echo base_url('admin/delete_person'); ?>';
+                var id = $('input:hidden').val();
+                var param = '/' + id;
+
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url + param,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#delete-person #ajax-preloader').html('<p></p>').show();
+                    },
+                    success: function (data) {
+
+                        var res = data;
+
+                        if (res.status == true) {
+
+                            // Hide preloader.
+                            $('#delete-person #ajax-preloader').html('<p></p>').hide('fast');
+
+                            // Success msg response
+                            $('#delete-person #ajax-response-update').html(res.msg);
+
+                            // Reload datatables
+                            $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
+
+                            // Auto hide modal
+                            setTimeout(function(){
+                                $('#delete-person').modal('hide');
+                            }, 1800);
+
+                        } else {
+                            // Hide preloader.
+                            $('#delete-person #ajax-preloader').html('<p></p>').hide('fast');
+
+                            // Error msg response
+                            $('#delete-person #ajax-response-update').html(res.msg);
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -508,6 +618,7 @@
         view_person_info();
         update_person_info();
         add_person();
+        delete_person();
         navbar_affix();
         input_masking();
         datetime_picker();

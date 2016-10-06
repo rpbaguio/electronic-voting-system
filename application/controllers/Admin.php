@@ -136,6 +136,29 @@ class Admin extends CI_Controller
         }
     }
 
+    public function delete_person()
+    {
+        if (!$this->input->is_ajax_request()) {
+            redirect('admin', 'refresh');
+        }
+
+        if ($this->input->post('id')) {
+            $this->person_model->_delete_person($this->uri->segment(3));
+
+            $data = [
+                'status' => true,
+                'msg' => '<div class="alert alert-success">Successfully deleted.</div>'
+            ];
+            echo json_encode($data);
+        } else {
+            $data = [
+                'status' => false,
+                'msg' => '<div class="alert alert-danger">Unable to delete record.</div>'
+            ];
+            echo json_encode($data);
+        }
+    }
+
     public function voting_results()
     {
         if (logged_in() && user('role_id') == 1) {

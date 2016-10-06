@@ -16,7 +16,7 @@
   src: local("Material Icons"), local("MaterialIcons-Regular"), url(../../../material_icons/fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../../../material_icons/fonts/MaterialIcons-Regular.woff) format("woff"), url(../../../material_icons/fonts/MaterialIcons-Regular.ttf) format("truetype");
 }
 .material-icons, #ballot-form .panel-default .panel-body form .checkbox input:checked + label::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a[rel=light]:before, #ajax-preloader p:before {
   /* Preferred icon size */
   display: inline-block;
   font-family: 'Material Icons';
@@ -42,60 +42,60 @@
 
 /* Rules for sizing the icon. */
 .material-icons.md-14, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-14::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-14::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-14[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-14[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-14[rel=light]:before, #ajax-preloader p.md-14:before {
   font-size: 14px;
   vertical-align: middle;
 }
 
 .material-icons.md-16, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-16::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-16::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-16[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-16[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-16[rel=light]:before, #ajax-preloader p.md-16:before {
   font-size: 16px;
   vertical-align: middle;
 }
 
 .material-icons.md-18, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-18::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-18::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-18[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-18[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-18[rel=light]:before, #ajax-preloader p.md-18:before {
   font-size: 18px;
   vertical-align: middle;
 }
 
 .material-icons.md-24, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-24::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-24::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-24[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-24[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-24[rel=light]:before, #ajax-preloader p.md-24:before {
   font-size: 24px;
   vertical-align: middle;
 }
 
 .material-icons.md-36, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-36::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-36::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-36[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-36[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-36[rel=light]:before, #ajax-preloader p.md-36:before {
   font-size: 36px;
   vertical-align: middle;
 }
 
 .material-icons.md-48, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-48::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-48::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-48[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-48[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-48[rel=light]:before, #ajax-preloader p.md-48:before {
   font-size: 48px;
   vertical-align: middle;
 }
 
 /* Rules for using icons as black on a light background. */
 .material-icons.md-dark, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-dark::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-dark::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark[rel=light]:before, #ajax-preloader p.md-dark:before {
   color: rgba(0, 0, 0, .54);
 }
 
 .material-icons.md-dark.md-inactive, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-dark.md-inactive::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-dark.md-inactive::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark.md-inactive[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark.md-inactive[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-dark.md-inactive[rel=light]:before, #ajax-preloader p.md-dark.md-inactive:before {
   color: rgba(0, 0, 0, .26);
 }
 
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-light::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-light::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light[rel=light]:before, #ajax-preloader p.md-light:before {
   color: white;
 }
 
 .material-icons.md-light.md-inactive, #ballot-form .panel-default .panel-body form .checkbox input:checked + label.md-light.md-inactive::before, #ballot-form .panel-default .panel-body form .checkbox input:disabled + label.md-light.md-inactive::before, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light.md-inactive[rel=dark]:before,
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light.md-inactive[rel=light]:before {
+#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a.md-light.md-inactive[rel=light]:before, #ajax-preloader p.md-light.md-inactive:before {
   color: rgba(255, 255, 255, .3);
 }
 
@@ -814,20 +814,20 @@ body {
        -o-transition: padding .5s ease-out .5s;
           transition: padding .5s ease-out .5s;
 }
-#dashboard .panel-default .panel-body form .btn-icon-download::after,
-#dashboard .panel-default .panel-body form .btn-icon-preview::after,
-#dashboard .panel-default .panel-body form .btn-icon-send::after {
+#dashboard .panel-default .panel-body form .btn-icon-download:after,
+#dashboard .panel-default .panel-body form .btn-icon-preview:after,
+#dashboard .panel-default .panel-body form .btn-icon-send:after {
   padding-left: 10px;
   font-family: 'fontAwesome';
   font-size: 20px;
 }
-#dashboard .panel-default .panel-body form .btn-icon-send::after {
+#dashboard .panel-default .panel-body form .btn-icon-send:after {
   content: '\f1d8';
 }
-#dashboard .panel-default .panel-body form .btn-icon-preview::after {
+#dashboard .panel-default .panel-body form .btn-icon-preview:after {
   content: '\f06e';
 }
-#dashboard .panel-default .panel-body form .btn-icon-download::after {
+#dashboard .panel-default .panel-body form .btn-icon-download:after {
   content: '\f0ed';
 }
 #dashboard .panel-default .panel-body .button-group {
@@ -1047,22 +1047,6 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#dashboard .panel-default .panel-body #ajax-preloader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1000;
-  width: 100%;
-  background-color: rgba(255, 255, 255, .8);
-  transform: translate(-50%, -50%);
-}
-#dashboard .panel-default .panel-body #ajax-preloader p {
-  padding: 10px 0;
-  margin: 0;
-  color: #333;
-  text-align: center;
-  text-transform: uppercase;
-}
 
 /* Footer*/
 footer {
@@ -1096,9 +1080,17 @@ footer {
   transform: translate(-50%, -50%);
 }
 #ajax-preloader p {
-  color: #333;
+  padding: 10px 0;
+  line-height: 0;
+  color: #777;
   text-align: center;
-  text-transform: uppercase;
+}
+#ajax-preloader p:before {
+  font-size: 36px;
+  content: '\E863';
+  -webkit-animation: spin 1s infinite linear;
+     -moz-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
 }
 
 /* Table Tools */
@@ -1320,18 +1312,6 @@ table.dataTable thead .sorting_desc:after {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-.modal .modal-content .modal-footer .btn-primary {
-  text-transform: uppercase;
-  background-color: #22527b;
-  border: 0;
-}
-.modal .modal-content .modal-footer .btn-primary:hover {
-  background-color: #285f8f;
-  outline: 0;
-}
-.modal .modal-content .modal-footer .btn-default {
-  text-transform: uppercase;
 }
 
 /* Mandatory field */
