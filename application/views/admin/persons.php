@@ -192,7 +192,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                <h4 class="modal-title" id="myModalLabel">Delete Person</h4>
             </div>
             <?php echo form_open('admin/delete_person', array('class' => 'delete-person-form')) ?>
             <div class="modal-body">
@@ -448,72 +448,76 @@
         // POST: Add Person
         var add_person = function() {
 
-            // Reset form
-            var reset = function() {
-                $('#add-person').find('form')[0].reset();
-                $('#add-person .form-group').removeClass('has-error');
-            }
+            $('#add-person').on('show.bs.modal', function (e) {
+                // Reset form
+                var reset = function() {
+                    $('#add-person #ajax-response-add').empty();
+                    $('#add-person').find('form')[0].reset();
+                    $('#add-person .form-group').removeClass('has-error');
+                }
 
-            // Reset form
-            reset();
+                // Reset form
+                reset();
 
-            $('form.add-person-form').on('submit', function (e) {
+                $('form.add-person-form').on('submit', function (e) {
 
-                // Serialize data
-                var data = $(this).serialize();
+                    // Serialize data
+                    var data = $(this).serialize();
 
-                $.ajax({
-                    url: location.origin + '/admin/add_person',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: data,
-                    cache: false,
-                    processData: false,
-                    beforeSend: function () {
-                        $('#add-person #ajax-preloader').html('<p></p>').show();
-                    },
-                    success: function (data) {
+                    $.ajax({
+                        url: location.origin + '/admin/add_person',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        cache: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $('#add-person #ajax-preloader').html('<p></p>').show();
+                        },
+                        success: function (data) {
 
-                        var res = data;
+                            var res = data;
 
-                        if (res.status === true) {
+                            if (res.status === true) {
 
-                            // Hide preloader
-                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
+                                // Hide preloader
+                                $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
 
-                            // Success msg response
-                            $('#add-person #ajax-response-add').html(res.msg).show();
+                                // Success msg response
+                                $('#add-person #ajax-response-add').html(res.msg).show();
 
-                            // Set timeout before hiding the success message response.
-                            setTimeout(function () {
-                                $('#add-person #ajax-response-add').hide('fast');
-                            }, 3600);
+                                // Set timeout before hiding the success message response.
+                                setTimeout(function () {
+                                    $('#add-person #ajax-response-add').hide('fast');
+                                }, 3600);
 
-                            // Reset form
-                            reset();
+                                // Reset form
+                                reset();
 
-                            // Reload datatables
-                            $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
-                        } else {
-                            // Hide preloader.
-                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
+                                // Reload datatables
+                                $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
+                            } else {
+                                // Hide preloader.
+                                $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
 
-                            // Error message response.
-                            $('#add-person #ajax-response-add').html(res.msg).show();
+                                // Error message response.
+                                $('#add-person #ajax-response-add').html(res.msg).show();
 
-                            ($('#add-person #first-name > input').val().length <= 0) ? $('#add-person #first-name').addClass('has-error') : $('#add-person #first-name').removeClass('has-error');
-                            ($('#add-person #last-name > input').val().length <= 0) ? $('#add-person #last-name').addClass('has-error') : $('#add-person #last-name').removeClass('has-error');
-                            ($('#add-person #gender > input').val().length <= 0) ? $('#add-person #gender').addClass('has-error') : $('#add-person #gender').removeClass('has-error');
+                                ($('#add-person #first-name > input').val().length <= 0) ? $('#add-person #first-name').addClass('has-error') : $('#add-person #first-name').removeClass('has-error');
+                                ($('#add-person #last-name > input').val().length <= 0) ? $('#add-person #last-name').addClass('has-error') : $('#add-person #last-name').removeClass('has-error');
+                                ($('#add-person #gender > input').val().length <= 0) ? $('#add-person #gender').addClass('has-error') : $('#add-person #gender').removeClass('has-error');
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            // For debugging
+                            console.log('The following error occurred: ' + textStatus, errorThrown);
                         }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        // For debugging
-                        console.log('The following error occurred: ' + textStatus, errorThrown);
-                    }
-                });
+                    });
 
-                e.preventDefault();
+                    e.preventDefault();
+                });
             });
+
         }
 
         // POST: Delete Person
