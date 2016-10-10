@@ -40,5 +40,5 @@ class Position_Model extends CI_Model
 
 /*
  * end of file
- * location: models/Person_model.php
+ * location: models/Position_model.php
  */

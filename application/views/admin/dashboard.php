@@ -89,9 +89,9 @@
         // GET: Population by person gender
         var gender = function() {
 
-          var ctx = $('#gender-chart')
-          var url = '<?php echo base_url('admin/gender'); ?>'
-          var data = $(this).serialize()
+          var ctx = $('#gender-chart');
+          var url = location.origin + '/admin/gender';
+          var data = $(this).serialize();
 
           $.ajax({
               url: url,
@@ -145,7 +145,7 @@
         var status = function() {
 
           var ctx = $('#status-chart');
-          var url = '<?php echo base_url('admin/status'); ?>';
+          var url = location.origin + '/admin/status';
           var data = $(this).serialize();
 
           $.ajax({

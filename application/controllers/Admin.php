@@ -268,6 +268,15 @@ class Admin extends CI_Controller
 
     public function _qrcode_generator($access_code)
     {
+        $config['cacheable']    = true; //boolean, the default is true
+        $config['cachedir']     = ''; //string, the default is application/cache/
+        $config['errorlog']     = ''; //string, the default is application/logs/
+        $config['quality']      = true; //boolean, the default is true
+        $config['size']         = '10'; //interger, the default is 1024
+        $config['black']        = array(255, 255, 255); // array, default is array(255,255,255)
+        $config['white']        = array(0, 0, 0); // array, default is array(0,0,0)
+        $this->ciqrcode->initialize($config);
+
         $params['data'] = $access_code;
         $params['level'] = 'H';
         $params['size'] = 8;

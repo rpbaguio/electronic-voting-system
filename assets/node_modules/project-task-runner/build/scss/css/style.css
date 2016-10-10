@@ -239,7 +239,7 @@ body {
 }
 #header .jumbotron h1,
 #header .jumbotron p {
-  font-family: "Georgia", "Cambria", "Times New Roman", "Times", serif;
+  font-family: 'Georgia', serif;
   color: #22527b;
   text-align: center;
 }

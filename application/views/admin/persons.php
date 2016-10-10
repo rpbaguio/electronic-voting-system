@@ -258,7 +258,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "<?=base_url('admin/person_data')?>",
+                    "url": location.origin + "/admin/person_data",
                     "type": "POST"
                 },
                 "columns": [
@@ -334,7 +334,7 @@
                 // Reset form
                 reset();
 
-                var url = '<?php echo base_url('admin/person_info'); ?>';
+                var url = location.origin + '/admin/person_info';
                 var target = $(e.relatedTarget);
                 var id = target.data('param');
                 var param = '/' + id;
@@ -387,7 +387,7 @@
         var update_person_info = function() {
             $('form.update-person-info-form').on('submit', function (e) {
 
-                var url = '<?php echo base_url('admin/update_person_info'); ?>';
+                var url = location.origin + '/admin/update_person_info';
                 var id = $('input:hidden').val();
                 var param = '/' + id;
 
@@ -454,13 +454,16 @@
                 $('#add-person .form-group').removeClass('has-error');
             }
 
+            // Reset form
+            reset();
+
             $('form.add-person-form').on('submit', function (e) {
 
                 // Serialize data
                 var data = $(this).serialize();
 
                 $.ajax({
-                    url: '<?php echo base_url('admin/add_person'); ?>',
+                    url: location.origin + '/admin/add_person',
                     type: 'POST',
                     dataType: 'json',
                     data: data,
@@ -536,7 +539,7 @@
 
             $('form.delete-person-form').on('submit', function (e) {
 
-                var url = '<?php echo base_url('admin/delete_person'); ?>';
+                var url = location.origin + '/admin/delete_person';
                 var id = $('input:hidden').val();
                 var param = '/' + id;
 
