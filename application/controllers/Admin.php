@@ -63,7 +63,7 @@ class Admin extends CI_Controller
                 'birth_date' => $row->birth_date,
                 'access_code' => $qrcode,
                 'dt_registered' => $row->dt_registered,
-                'qrcode' => $this->_qrcode_generator($qrcode)
+                'qrcode' => $this->_qrcode_generator($qrcode),
             ];
         }
 
@@ -130,7 +130,7 @@ class Admin extends CI_Controller
                 'msg' => '<div class="alert alert-danger"><ul class="validation-errors">'.validation_errors().'</ul></div>',
                 'first_name' => form_error('first_name'),
                 'last_name' => form_error('last_name'),
-                'gender' => form_error('gender')
+                'gender' => form_error('gender'),
             ];
             echo json_encode($data);
         }
@@ -147,13 +147,13 @@ class Admin extends CI_Controller
 
             $data = [
                 'status' => true,
-                'msg' => '<div class="alert alert-success">Successfully deleted.</div>'
+                'msg' => '<div class="alert alert-success">Successfully deleted.</div>',
             ];
             echo json_encode($data);
         } else {
             $data = [
                 'status' => false,
-                'msg' => '<div class="alert alert-danger">Unable to delete record.</div>'
+                'msg' => '<div class="alert alert-danger">Unable to delete record.</div>',
             ];
             echo json_encode($data);
         }
@@ -204,8 +204,8 @@ class Admin extends CI_Controller
             ),
             'gender' => array(
                 $this->person_model->_count_persons_by_gender($m),
-                $this->person_model->_count_persons_by_gender($f)
-            )
+                $this->person_model->_count_persons_by_gender($f),
+            ),
         );
 
         echo json_encode($data);
@@ -230,14 +230,14 @@ class Admin extends CI_Controller
                 $this->person_model->_count_validated_persons($validated),
                 $this->person_model->_count_validated_persons($unvalidated),
                 $this->person_model->_count_voted_persons($voted),
-                $this->person_model->_count_voted_persons($unvoted)
-            )
+                $this->person_model->_count_voted_persons($unvoted),
+            ),
         );
 
         echo json_encode($data);
     }
 
-    # Data source in JSON format (for datatables)
+    // Data source in JSON format (for datatables)
     public function person_data()
     {
         if (logged_in() && user('role_id') == 1) {
@@ -253,7 +253,7 @@ class Admin extends CI_Controller
         }
     }
 
-    # helper
+    // helper
     public function _alpha_numeric_randomizer()
     {
         $arr = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'); // get all the characters into an array
@@ -266,24 +266,24 @@ class Admin extends CI_Controller
 
     public function _qrcode_generator($access_code)
     {
-        $config['cacheable']    = true; //boolean, the default is true
-        $config['cachedir']     = ''; //string, the default is application/cache/
-        $config['errorlog']     = ''; //string, the default is application/logs/
-        $config['quality']      = true; //boolean, the default is true
-        $config['size']         = '10'; //interger, the default is 1024
-        $config['black']        = array(255, 255, 255); // array, default is array(255,255,255)
-        $config['white']        = array(0, 0, 0); // array, default is array(0,0,0)
+        $config['cacheable'] = true; //boolean, the default is true
+        $config['cachedir'] = ''; //string, the default is application/cache/
+        $config['errorlog'] = ''; //string, the default is application/logs/
+        $config['quality'] = true; //boolean, the default is true
+        $config['size'] = '10'; //interger, the default is 1024
+        $config['black'] = array(255, 255, 255); // array, default is array(255,255,255)
+        $config['white'] = array(0, 0, 0); // array, default is array(0,0,0)
         $this->ciqrcode->initialize($config);
 
         $params['data'] = $access_code;
         $params['level'] = 'H';
         $params['size'] = 8;
-        $params['savename'] = FCPATH . 'assets/img/misc/' . $access_code . '-qrcode.png';
+        $params['savename'] = FCPATH.'assets/img/misc/'.$access_code.'-qrcode.png';
         $this->ciqrcode->generate($params);
 
-        return base_url('assets/img/misc') .'/'. $access_code . '-qrcode.png';
+        return base_url('assets/img/misc').'/'.$access_code.'-qrcode.png';
     }
-    # end helper
+    // end helper
 }
 
 /* End of file: Admin.php */

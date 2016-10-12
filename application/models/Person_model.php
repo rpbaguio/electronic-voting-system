@@ -138,7 +138,7 @@ class Person_Model extends CI_Model
 
         $person_data2 = array(
             'id' => $this->db->insert_id(),
-            'role_id' => 2,
+            'role_id' => $this->role,
             'is_validated' => 0,
             'is_voted' => 0,
             'is_candidate' => 0,

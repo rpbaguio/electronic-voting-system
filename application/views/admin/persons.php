@@ -429,10 +429,10 @@
                             // Error msg response
                             $('#update-person-info #ajax-response-update').html(res.msg);
 
-                            ($('#update-person-info #first-name input').val().length <= 0) ? $('#update-person-info #first-name').addClass('has-error') : $('#update-person-info #first-name').removeClass('has-error');
-                            ($('#update-person-info #last-name input').val().length <= 0) ? $('#update-person-info #last-name').addClass('has-error') : $('#update-person-info #last-name').removeClass('has-error');
-                            ($('#update-person-info #birth-date input').val().length <= 0) ? $('#update-person-info #birth-date').addClass('has-error') : $('#update-person-info #birth-date').removeClass('has-error');
-                            ($('#update-person-info #access-code input').val().length <= 0) ? $('#update-person-info #access-code').addClass('has-error') : $('#update-person-info #access-code').removeClass('has-error');
+                            (res.first_name.length > 0) ? $('#update-person-info #first-name').addClass('has-error') : $('#update-person-info #first-name').removeClass('has-error');
+                            (res.last_name.length > 0) ? $('#update-person-info #last-name').addClass('has-error') : $('#update-person-info #last-name').removeClass('has-error');
+                            (res.birth_date.length > 0) ? $('#update-person-info #birth-date').addClass('has-error') : $('#update-person-info #birth-date').removeClass('has-error');
+                            (res.access_code.length > 0) ? $('#update-person-info #access-code').addClass('has-error') : $('#update-person-info #access-code').removeClass('has-error');
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -447,7 +447,6 @@
 
         // POST: Add Person
         var add_person = function() {
-
             $('#add-person').on('show.bs.modal', function (e) {
                 // Reset form
                 var reset = function() {
@@ -456,68 +455,67 @@
                     $('#add-person .form-group').removeClass('has-error');
                 }
 
-                // Reset form
                 reset();
-
-                $('form.add-person-form').on('submit', function (e) {
-
-                    // Serialize data
-                    var data = $(this).serialize();
-
-                    $.ajax({
-                        url: location.origin + '/admin/add_person',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: data,
-                        cache: false,
-                        processData: false,
-                        beforeSend: function () {
-                            $('#add-person #ajax-preloader').html('<p></p>').show();
-                        },
-                        success: function (data) {
-
-                            var res = data;
-
-                            if (res.status === true) {
-
-                                // Hide preloader
-                                $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
-
-                                // Success msg response
-                                $('#add-person #ajax-response-add').html(res.msg).show();
-
-                                // Set timeout before hiding the success message response.
-                                setTimeout(function () {
-                                    $('#add-person #ajax-response-add').hide('fast');
-                                }, 3600);
-
-                                // Reset form
-                                reset();
-
-                                // Reload datatables
-                                $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
-                            } else {
-                                // Hide preloader.
-                                $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
-
-                                // Error message response.
-                                $('#add-person #ajax-response-add').html(res.msg).show();
-
-                                ($('#add-person #first-name > input').val().length <= 0) ? $('#add-person #first-name').addClass('has-error') : $('#add-person #first-name').removeClass('has-error');
-                                ($('#add-person #last-name > input').val().length <= 0) ? $('#add-person #last-name').addClass('has-error') : $('#add-person #last-name').removeClass('has-error');
-                                ($('#add-person #gender > input').val().length <= 0) ? $('#add-person #gender').addClass('has-error') : $('#add-person #gender').removeClass('has-error');
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            // For debugging
-                            console.log('The following error occurred: ' + textStatus, errorThrown);
-                        }
-                    });
-
-                    e.preventDefault();
-                });
             });
 
+            $('form.add-person-form').on('submit', function (e) {
+
+                var url = location.origin + '/admin/add_person';
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#add-person #ajax-preloader').html('<p></p>').show();
+                    },
+                    success: function (data) {
+
+                        var res = data;
+
+                        if (res.status == true) {
+
+                            // Hide preloader
+                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
+
+                            // Success msg response
+                            $('#add-person #ajax-response-add').html(res.msg).show();
+
+                            // Reset form
+                            $('#add-person .form-group').removeClass('has-error');
+
+                            // Reload datatables
+                            $('#datatables').DataTable().ajax.reload(null, false); // user paging is not reset on reload
+
+                            // Auto hide modal
+                            setTimeout(function(){
+                                $('#add-person').modal('hide');
+                            }, 1800);
+
+                        } else {
+                            // Hide preloader.
+                            $('#add-person #ajax-preloader').html('<p></p>').hide('fast');
+
+                            // Error message response.
+                            $('#add-person #ajax-response-add').html(res.msg).show();
+
+                            (res.first_name.length > 0) ? $('#add-person #first-name').addClass('has-error') : $('#add-person #first-name').removeClass('has-error');
+                            (res.last_name.length > 0) ? $('#add-person #last-name').addClass('has-error') : $('#add-person #last-name').removeClass('has-error');
+                            (res.gender.length > 0) ? $('#add-person #gender').addClass('has-error') : $('#add-person #gender').removeClass('has-error');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // For debugging
+                        console.log('The following error occurred: ' + textStatus, errorThrown);
+                    }
+                });
+
+                e.preventDefault();
+            });
         }
 
         // POST: Delete Person
