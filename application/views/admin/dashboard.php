@@ -37,6 +37,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Line Chart
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -47,6 +48,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -63,9 +65,6 @@
 <script type="text/javascript" src="<?= base_url('assets/pace/js/pace.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/tb/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/script/chart.bundle.min.js'); ?>"></script>
-<!-- @TODO Theme switcher
-<script type="text/javascript" src="<?= base_url('assets/script/theme-switcher.js'); ?>"></script>
--->
 
 <script type="text/javascript">
     $(function () {
@@ -86,12 +85,57 @@
             });
         }
 
-        // GET: Population by person gender
+        // GET: Population by gender
         var gender = function() {
 
           var ctx = $('#gender-chart');
           var url = location.origin + '/admin/gender';
-          var data = $(this).serialize();
+          var data = ctx.serialize();
+
+          $.ajax({
+              url: url,
+              method: 'GET',
+              dataType: 'json',
+              data: data,
+              success: function(data) {
+                var res = data;
+                var chart_data = {
+                    labels: res.labels,
+                    datasets: [
+                      {
+                        backgroundColor: ['rgba(54, 162, 235, 0.25)', 'rgba(255, 99, 132, 0.25)'],
+                        borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                        hoverBackgroundColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                        borderWidth: 1,
+                        data: res.gender
+                      }
+                    ]
+                }
+                var myChart = new Chart(ctx, {
+                    data: chart_data,
+                    type: "polarArea",
+                    options: {
+                        elements: {
+                            arc: {
+                                borderColor: "#000000"
+                            }
+                        }
+                    }
+                });
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  // For debugging
+                  console.log('The following error occurred: ' + textStatus, errorThrown);
+              }
+          });
+        }
+
+        // GET: Population by status
+        var status = function() {
+
+          var ctx = $('#status-chart');
+          var url = location.origin + '/admin/status';
+          var data = ctx.serialize();
 
           $.ajax({
               url: url,
@@ -105,14 +149,28 @@
                     datasets: [
                       {
                         label: res.labels[0],
-                        data: res.male,
+                        data: [res.status[0]],
+                        backgroundColor: 'rgba(92, 184, 92, 0.25)',
+                        borderColor: 'rgba(92, 184, 92, 1)',
+                        borderWidth: 1,
+                      },
+                      {
+                        label: res.labels[1],
+                        data: [res.status[1]],
+                        backgroundColor: 'rgba(240, 173, 78, 0.25)',
+                        borderColor: 'rgba(240, 173, 78, 1)',
+                        borderWidth: 1,
+                      },
+                      {
+                        label: res.labels[2],
+                        data: [res.status[2]],
                         backgroundColor: 'rgba(54, 162, 235, 0.25)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1,
                       },
                       {
-                        label: res.labels[1],
-                        data: res.female,
+                        label: res.labels[3],
+                        data: [res.status[3]],
                         backgroundColor: 'rgba(255, 99, 132, 0.25)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
@@ -129,52 +187,6 @@
                                     beginAtZero:true
                                 }
                             }]
-                        }
-                    }
-                });
-
-              },
-              error: function (jqXHR, textStatus, errorThrown) {
-                  // For debugging
-                  console.log('The following error occurred: ' + textStatus, errorThrown);
-              }
-          });
-        }
-
-        // GET: Population by person status
-        var status = function() {
-
-          var ctx = $('#status-chart');
-          var url = location.origin + '/admin/status';
-          var data = $(this).serialize();
-
-          $.ajax({
-              url: url,
-              method: 'GET',
-              dataType: 'json',
-              data: data,
-              success: function(data) {
-                var res = data;
-                var chart_data = {
-                    labels: res.labels,
-                    datasets: [
-                      {
-                        backgroundColor: ['rgba(92, 184, 92, 0.25)', 'rgba(240, 173, 78, 0.25)', 'rgba(54, 162, 235, 0.25)', 'rgba(255, 99, 132, 0.25)'],
-                        borderColor: ['rgba(92, 184, 92, 1)', 'rgba(240, 173, 78, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
-                        hoverBackgroundColor: ['rgba(92, 184, 92, 1)', 'rgba(240, 173, 78, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
-                        borderWidth: 1,
-                        data: res.status
-                      }
-                    ]
-                }
-                var myChart = new Chart(ctx, {
-                    data: chart_data,
-                    type: "polarArea",
-                    options: {
-                        elements: {
-                            arc: {
-                                borderColor: "#000000"
-                            }
                         }
                     }
                 });
@@ -245,7 +257,7 @@
         active_list();
         gender();
         status();
-        line();
+        //line();
         navbar_affix();
     });
 </script>

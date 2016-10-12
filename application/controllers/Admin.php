@@ -202,12 +202,10 @@ class Admin extends CI_Controller
             'labels' => array(
                 'Male', 'Female',
             ),
-            'male' => array(
+            'gender' => array(
                 $this->person_model->_count_persons_by_gender($m),
-            ),
-            'female' => array(
-                $this->person_model->_count_persons_by_gender($f),
-            ),
+                $this->person_model->_count_persons_by_gender($f)
+            )
         );
 
         echo json_encode($data);
@@ -232,8 +230,8 @@ class Admin extends CI_Controller
                 $this->person_model->_count_validated_persons($validated),
                 $this->person_model->_count_validated_persons($unvalidated),
                 $this->person_model->_count_voted_persons($voted),
-                $this->person_model->_count_voted_persons($unvoted),
-            ),
+                $this->person_model->_count_voted_persons($unvoted)
+            )
         );
 
         echo json_encode($data);
