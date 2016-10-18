@@ -1491,7 +1491,7 @@ h6 + hr {
 
 /* Media Queries */
 @media (max-width: 720px) {
-  #signin {
+  #signin, #db-config {
     padding: 10px 20px;
   }
 
@@ -1505,6 +1505,64 @@ h6 + hr {
     border: none;
     box-shadow: 0 0 0 transparent;
   }
+}
+/* DB Config */
+#db-config {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+#db-config h3 {
+  text-transform: uppercase;
+}
+#db-config form .well {
+  background-color: transparent;
+  border: none;
+  border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 0 0 transparent;
+}
+#db-config form .well .form-group .form-control {
+  box-shadow: 0 0 0 transparent;
+}
+#db-config form .well .form-group .form-control + span {
+  background-color: transparent;
+  border-left: none;
+}
+#db-config form .well .form-group .form-control + span:active, #db-config form .well .form-group .form-control + span:focus {
+  outline: none;
+}
+#db-config form .well .form-group:last-child {
+  margin-bottom: 0;
+}
+#db-config form button {
+  margin: 20px 0;
+  color: #fff;
+  text-transform: uppercase;
+  border: 0;
+}
+#db-config form button:active, #db-config form button:focus {
+  outline: 0;
+}
+#db-config form button:hover:after {
+  -webkit-animation: slide 1s infinite linear;
+     -moz-animation: slide 1s infinite linear;
+          animation: slide 1s infinite linear;
+}
+#db-config form button:after {
+  padding-left: 10px;
+  font-family: 'fontAwesome';
+  content: '\f105';
+}
+#db-config form button:disabled:after {
+  content: '';
 }
 
 /*# sourceMappingURL=style.css.map */
