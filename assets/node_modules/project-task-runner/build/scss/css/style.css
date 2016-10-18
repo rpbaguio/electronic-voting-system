@@ -1016,6 +1016,9 @@ body {
   background-color: #fceedb;
   border-left: 4px solid #f2b866;
 }
+#dashboard .panel-default .panel-body .table tbody tr td:first-child {
+  text-align: center;
+}
 #dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(2), #dashboard .panel-default .panel-body .table tbody tr td:nth-last-child(1) {
   text-align: center;
 }
@@ -1143,6 +1146,9 @@ footer {
 div.dataTables_wrapper {
   margin: 20px;
   clear: both;
+}
+div.dataTables_wrapper .dataTables_filter input:before {
+  content: 'hello';
 }
 div.dataTables_wrapper .pagination li a {
   outline: 0;

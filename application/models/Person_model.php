@@ -95,6 +95,7 @@ class Person_Model extends CI_Model
         $data = array(
             'access_code' => $hash,
             'is_validated' => 1,
+            'dt_updated' => date('Y-m-d H:i:s')
         );
 
         $this->db
@@ -111,7 +112,7 @@ class Person_Model extends CI_Model
         $data = array(
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
-            'birth_date' => $this->input->post('birth_date'),
+            'birth_date' => $this->input->post('birth_date')
         );
 
         $this->db
@@ -131,7 +132,7 @@ class Person_Model extends CI_Model
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
             'birth_date' => $this->input->post('birth_date'),
-            'gender' => $this->input->post('gender'),
+            'gender' => $this->input->post('gender')
         );
 
         $this->db->insert('tbl_person_info', $person_data1);
@@ -145,7 +146,7 @@ class Person_Model extends CI_Model
             'group_id' => 0,
             'position_id' => 0,
             'is_deleted' => 0,
-            'dt_registered' => date('Y-m-d H:i:s'),
+            'dt_registered' => date('Y-m-d H:i:s')
         );
 
         $this->db->insert($this->tbl, $person_data2);
@@ -160,7 +161,7 @@ class Person_Model extends CI_Model
     public function _delete_person($id)
     {
         $data = array(
-            'is_deleted' => 1,
+            'is_deleted' => 1
         );
 
         $this->db

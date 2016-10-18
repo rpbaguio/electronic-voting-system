@@ -29,6 +29,7 @@
                         <table id="datatables" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Gender</th>
@@ -262,6 +263,10 @@
                     "type": "POST"
                 },
                 "columns": [
+                    {
+                        searchable: false,
+                        data: null
+                    },
                     {data: "first_name"},
                     {data: "last_name"},
                     {
@@ -305,10 +310,13 @@
                     }
                 ],
                 "lengthMenu": [[10, 25, 50, 75, 100, -1], [10, 25, 50, 75, 100, "All"]],
-                "order": [[1, "asc"]],
+                "order": [[2, "asc"]],
                 "columnDefs": [
-                    {"orderable": false, "targets": [6, 7]}
-                ]
+                    {"orderable": false, "targets": [0, 7, 8]}
+                ],
+                "fnCreatedRow": function (row, data, index) {
+                    $('td', row).eq(0).html(index + 1);
+                }
             });
             var tableTools = new $.fn.dataTable.TableTools(table, {
                 "buttons": [

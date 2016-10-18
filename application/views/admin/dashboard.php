@@ -55,6 +55,14 @@
     </div>
 </div>
 
+<!-- Markup -->
+<div id="group">
+    <div class="container-fluid">
+        <div class="row">
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 <?= $this->load->view('_shared/footer', '', true) ?>
 
