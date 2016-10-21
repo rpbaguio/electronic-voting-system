@@ -34,6 +34,7 @@ class Ballot_Form extends CI_Controller
                 $view_data = [
                     'page_title' => 'Ballot Form',
                     'page_header' => 'EVS',
+                    'site_info' => $this->settings_model->_get_settings()
                 ];
 
                 $this->load->view('_shared/header', $view_data);

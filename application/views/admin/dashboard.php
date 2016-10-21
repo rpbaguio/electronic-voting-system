@@ -9,13 +9,12 @@
   </div>
 </div>
 
-<!-- Dashboard -->
-<div id="dashboard">
+<!-- charts -->
+<div id="charts">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <h2><?= $page_title ?></h2>
-                <hr/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-default">
@@ -51,14 +50,6 @@
                     -->
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Markup -->
-<div id="group">
-    <div class="container-fluid">
-        <div class="row">
         </div>
     </div>
 </div>

@@ -58,12 +58,14 @@ class Admin extends CI_Controller
             $qrcode = $this->_alpha_numeric_randomizer();
             $data = [
                 'id' => $row->person_id,
+                'prefix' => $row->prefix,
                 'first_name' => $row->first_name,
                 'last_name' => $row->last_name,
+                'suffix' => $row->suffix,
                 'birth_date' => $row->birth_date,
                 'access_code' => $qrcode,
                 'dt_registered' => $row->dt_registered,
-                'qrcode' => $this->_qrcode_generator($qrcode),
+                'qrcode' => $this->_qrcode_generator($qrcode)
             ];
         }
 
@@ -97,8 +99,7 @@ class Admin extends CI_Controller
                 'msg' => '<div class="alert alert-danger"><ul class="validation-errors">'.validation_errors().'</ul></div>',
                 'fist_name' => form_error('first_name'),
                 'last_name' => form_error('last_name'),
-                'birth_date' => form_error('birth_date'),
-                'access_code' => form_error('access_code'),
+                'access_code' => form_error('access_code')
             ];
             echo json_encode($data);
         }
@@ -165,6 +166,7 @@ class Admin extends CI_Controller
             $view_data = [
                 'page_title' => 'Voting Results',
                 'page_header' => 'EVS',
+                'site_info' => $this->settings_model->_get_settings()
             ];
 
             $this->load->view('_shared/header', $view_data);
@@ -189,6 +191,7 @@ class Admin extends CI_Controller
         }
     }
 
+    // Data source in JSON format (for dashboard charts)
     public function gender()
     {
         if (!$this->input->is_ajax_request()) {
@@ -242,7 +245,7 @@ class Admin extends CI_Controller
     {
         if (logged_in() && user('role_id') == 1) {
             $this->datatables
-                ->select('tbl_person.id AS person_id, tbl_person.is_validated, tbl_person.is_voted, tbl_person.is_candidate, tbl_person_info.first_name, tbl_person_info.last_name, tbl_person_info.gender', false)
+                ->select('tbl_person.id AS person_id, tbl_person.is_validated, tbl_person.is_voted, tbl_person.is_candidate, tbl_person_info.prefix, tbl_person_info.suffix, tbl_person_info.first_name, tbl_person_info.last_name, tbl_person_info.gender', false)
                 ->from('tbl_person')
                 ->join('tbl_person_info', 'tbl_person_info.id = tbl_person.id', 'left')
                 ->where('tbl_person.role_id = 2')

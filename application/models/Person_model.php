@@ -32,7 +32,7 @@ class Person_Model extends CI_Model
     public function _get_person_by_id($id)
     {
         $this->db
-            ->select('tbl_person.id AS person_id, tbl_person.dt_registered, t2.first_name, t2.last_name, t2.birth_date')
+            ->select('tbl_person.id AS person_id, tbl_person.dt_registered, t2.prefix, t2.first_name, t2.last_name, t2.suffix, t2.birth_date')
             ->from($this->tbl)
             ->join('tbl_person_info AS t2', 't2.id ='.$this->tbl.'.id', 'left')
             ->where($this->tbl.'.id', $id);
@@ -48,6 +48,8 @@ class Person_Model extends CI_Model
                 'tbl_person_info.first_name,'.
                 'tbl_person_info.middle_name,'.
                 'tbl_person_info.last_name,'.
+                'tbl_person_info.prefix,'.
+                'tbl_person_info.suffix,'.
                 'tbl_person_info.avatar,'.
                 'tbl_group.name AS group_name')
             ->from($this->tbl)
@@ -110,8 +112,10 @@ class Person_Model extends CI_Model
     public function _update_person_info($id)
     {
         $data = array(
+            'prefix' => $this->input->post('prefix'),
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
+            'suffix' => $this->input->post('suffix'),
             'birth_date' => $this->input->post('birth_date')
         );
 

@@ -14,6 +14,8 @@ if ($_POST) {
     $core = new Core();
     $database = new Database();
 
+    $error = '';
+
     // Validate the post data
     if ($core->validate_post($_POST) == true) {
 
@@ -27,31 +29,33 @@ if ($_POST) {
         }
 
         // If no errors, redirect to auth/login page
-        if (!isset($message)) {
+        if (!isset($message) || !isset($error)) {
             $redir = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
             $redir .= '://'.$_SERVER['HTTP_HOST'];
             header('Location: '.$redir.'/auth');
         }
+
     } else {
         $message = $core->show_message('error', 'All fields are required');
     }
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
     <title>DB Configuration</title>
+
     <!-- External stylesheet -->
     <link href="../assets/tb/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/pace/css/themes/flash.min.css" rel="stylesheet">
     <link href="../assets/themes/default/css/style.min.css" rel="stylesheet" title="main">
 </head>
 <body>
-
 <div id="main-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -61,43 +65,43 @@ if ($_POST) {
                   <h3 class="text-center">Database Config</h3>
                   <hr/>
 
-                  <?php if (is_writable($db_config_path)) {?>
+                  <?php if (is_writable($db_config_path)): ?>
 
-                  <?php if (isset($message)): ?>
-                        <div class="alert alert-danger">
-                            <ul class="validation-errors">
-                                <li><?= $message ?></li>
-                            </ul>
-                        </div>
-                  <?php endif; ?>
+                      <?php if (isset($message)): ?>
+                            <div class="alert alert-danger">
+                                <ul class="validation-errors">
+                                    <li><?= $message ?></li>
+                                </ul>
+                            </div>
+                      <?php endif; ?>
 
-                  <div class="well well-sm">
-                      <div class="form-group">
-                          <label class="control-label">Database Host<span class="important">*</span></label>
-                          <input type="text" class="form-control" name="hostname" placeholder="localhost">
+                      <div class="well well-sm">
+                          <div class="form-group">
+                              <label class="control-label">Database Host<span class="important">*</span></label>
+                              <input type="text" class="form-control" name="hostname" value="<?=(isset($_POST['hostname'])) ? htmlspecialchars($_POST['hostname']) : '' ?>" placeholder="localhost">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">Username<span class="important">*</span></label>
+                              <input type="text" class="form-control" name="username" value="<?=(isset($_POST['username'])) ? htmlspecialchars($_POST['username']) : '' ?>" placeholder="">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">Password</label>
+                              <input type="password" class="form-control" name="password" value="<?=(isset($_POST['password'])) ? htmlspecialchars($_POST['password']) : '' ?>" placeholder="">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">Database Name<span class="important">*</span></label>
+                              <input type="text" class="form-control" name="database" value="<?=(isset($_POST['database'])) ? htmlspecialchars($_POST['database']) : '' ?>" placeholder="">
+                          </div>
                       </div>
-                      <div class="form-group">
-                          <label class="control-label">Username<span class="important">*</span></label>
-                          <input type="text" class="form-control" name="username" placeholder="">
-                      </div>
-                      <div class="form-group">
-                          <label class="control-label">Password<span class="important">*</span></label>
-                          <input type="password" class="form-control" name="password" placeholder="">
-                      </div>
-                      <div class="form-group">
-                          <label class="control-label">Database Name<span class="important">*</span></label>
-                          <input type="text" class="form-control" name="database" placeholder="">
-                      </div>
-                  </div>
 
-                  <button type="submit" class="btn btn-primary btn-lg btn-block btn-rounded-corner">Submit</button>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block btn-rounded-corner">Submit</button>
 
-                  <?php } else { ?>
+                  <?php else: ?>
                       <p class="alert alert-danger">Please make the application/config/database.php file writable.
                           <strong>Example</strong>:<br/><br/>
                           <code>chmod 777 application/config/database.php</code>
                       </p>
-                  <?php } ?>
+                  <?php endif; ?>
 
                 </form>
             </div>

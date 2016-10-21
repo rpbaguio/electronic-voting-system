@@ -1,11 +1,20 @@
-<div class="container-fluid">
-    <div class="row">
-        <!-- Header / Site Info -->
-        <div id="header" class="col-md-12">
-            <div class="row">
-                <div class="jumbotron">
-                    <h1>Nazareth School <em>of</em> National University</h1>
-                    <p>Student Government</p>
+<!-- Header / Site Info -->
+<div id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="jumbotron">
+                        <?php if($site_info): ?>
+                            <?php foreach($site_info as $info): ?>
+                                <h1><?=$info->sys_header?></h1>
+                                <p><?=$info->sys_slogan?></p>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <h1>Site Header</h1>
+                            <p>Site Slogan</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -171,5 +171,6 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     'person_model',
     'position_model',
-    'tally_model'
+    'tally_model',
+    'settings_model'
 );

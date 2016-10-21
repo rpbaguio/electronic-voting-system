@@ -1,12 +1,12 @@
 <!-- Navbar -->
 <div id="navbar-wrapper">
-  <div class="navbar-affix" data-spy="affix">
-      <div class="container-fluid">
-          <div class="row">
-                <?= $this->load->view('admin/navbar', '', true) ?>
-          </div>
-      </div>
-  </div>
+    <!-- <div class="navbar-affix" data-spy="affix"> -->
+        <div class="container-fluid">
+            <div class="row">
+                  <?= $this->load->view('admin/navbar', '', true) ?>
+            </div>
+        </div>
+    <!-- </div> -->
 </div>
 
 <!-- Dashboard -->
@@ -15,7 +15,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h2><?= $page_title ?></h2>
-                <hr/>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="btn-group-wrapper pull-right">
@@ -30,9 +29,10 @@
                             <thead>
                             <tr>
                                 <th></th>
+                                <th>Prefix</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Gender</th>
+                                <th>Suffix</th>
                                 <th>Is Candidate?</th>
                                 <th>Is Validated?</th>
                                 <th>Is Voted?</th>
@@ -68,18 +68,30 @@
                 <div id="ajax-response-update"></div>
 
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
+                                <div id="prefix" class="form-group">
+                                    <label class="control-label">Prefix</label>
+                                    <input type="text" class="form-control typeahead-prefix" name="prefix" value="<?= set_value('prefix') ?>" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
                                 <div id="first-name" class="form-group">
                                     <label class="control-label">First Name<span class="important">*</span></label>
                                     <input type="text" class="form-control" name="first_name" value="<?= set_value('first_name') ?>" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div id="last-name" class="form-group">
                                     <label class="control-label">Last Name<span class="important">*</span></label>
                                     <input type="text" class="form-control" name="last_name" value="<?= set_value('last_name') ?>" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="suffix" class="form-group">
+                                    <label class="control-label">Suffix</label>
+                                    <input type="text" class="form-control" name="suffix" value="<?= set_value('suffix') ?>" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -96,11 +108,11 @@
                             </div>
                         </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                         <div class="row">
                             <div class="col-md-12">
                                   <div id="access-code" class="form-group">
-                                      <label class="control-label">Access Code<span class="important">*</span></label>
+                                      <label class="control-label">Access Code</label>
                                       <input type="text" class="form-control" name="access_code" value="" placeholder="">
                                   </div>
                             </div>
@@ -233,6 +245,7 @@
 <script type="text/javascript" src="<?= base_url('assets/script/moment.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/dt_picker/js/jquery.datetimepicker.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/script/jquery.maskedinput.min.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/script/typeahead.bundle.min.js'); ?>"></script>
 
 <script type="text/javascript">
     $(function () {
@@ -267,11 +280,15 @@
                         searchable: false,
                         data: null
                     },
+                    {
+                        searchable: false,
+                        data: "prefix"
+                    },
                     {data: "first_name"},
                     {data: "last_name"},
                     {
                         searchable: false,
-                        data: "gender"
+                        data: "suffix"
                     },
                     {
                         searchable: false,
@@ -310,9 +327,9 @@
                     }
                 ],
                 "lengthMenu": [[10, 25, 50, 75, 100, -1], [10, 25, 50, 75, 100, "All"]],
-                "order": [[2, "asc"]],
+                "order": [[3, "asc"]],
                 "columnDefs": [
-                    {"orderable": false, "targets": [0, 7, 8]}
+                    {"orderable": false, "targets": [0, 1, 4, 8, 9]}
                 ],
                 "fnCreatedRow": function (row, data, index) {
                     $('td', row).eq(0).html(index + 1);
@@ -370,8 +387,10 @@
 
                             // Populate form
                             $('#update-person-info input:hidden').val(res.id);
+                            $('#update-person-info #prefix input').val(res.prefix);
                             $('#update-person-info #first-name input').val(res.first_name);
                             $('#update-person-info #last-name input').val(res.last_name);
+                            $('#update-person-info #suffix input').val(res.suffix);
                             $('#update-person-info #birth-date input').val(res.birth_date);
                             $('#update-person-info #access-code input').val(res.access_code);
                             var dt = moment(res.dt_registered).format('llll'); // Format datetime with momentjs
@@ -437,10 +456,9 @@
                             // Error msg response
                             $('#update-person-info #ajax-response-update').html(res.msg);
 
-                            (res.first_name.length > 0) ? $('#update-person-info #first-name').addClass('has-error') : $('#update-person-info #first-name').removeClass('has-error');
-                            (res.last_name.length > 0) ? $('#update-person-info #last-name').addClass('has-error') : $('#update-person-info #last-name').removeClass('has-error');
-                            (res.birth_date.length > 0) ? $('#update-person-info #birth-date').addClass('has-error') : $('#update-person-info #birth-date').removeClass('has-error');
-                            (res.access_code.length > 0) ? $('#update-person-info #access-code').addClass('has-error') : $('#update-person-info #access-code').removeClass('has-error');
+                            (res.first_name != '') ? $('#update-person-info #first-name').addClass('has-error') : $('#update-person-info #first-name').removeClass('has-error');
+                            (res.last_name != '') ? $('#update-person-info #last-name').addClass('has-error') : $('#update-person-info #last-name').removeClass('has-error');
+                            (res.access_code != '') ? $('#update-person-info #access-code').addClass('has-error') : $('#update-person-info #access-code').removeClass('has-error');
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -626,15 +644,35 @@
             );
         }
 
+        // Twitter Typeahead
+        var auto_suggest_prefix = function() {
+
+            var base_url = location.origin;
+
+            var prefix = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: base_url + '/assets/data/prefix.json'
+            });
+
+            $('.typeahead-prefix').typeahead(null, {
+                    highlight: true,
+                    name: 'prefix',
+                    source: prefix
+                }
+            );
+        }
+
         active_list();
         data_tables();
         view_person_info();
         update_person_info();
         add_person();
         delete_person();
-        navbar_affix();
+        //navbar_affix();
         input_masking();
         datetime_picker();
+        auto_suggest_prefix();
     });
 </script>
 
