@@ -545,18 +545,8 @@ body {
 #navbar-wrapper {
   background-color: #337ab7;
 }
-#navbar-wrapper .navbar-default {
-  padding: 0 20px;
-  background-color: transparent;
-}
-#navbar-wrapper .navbar-default .navbar-toggle {
-  background-color: transparent;
-  border: none;
-}
-#navbar-wrapper .navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
-}
 #navbar-wrapper .navbar {
+  padding: 0 20px;
   margin: 0;
   background-color: #337ab7;
   border: none;
@@ -569,40 +559,47 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+#navbar-wrapper .navbar .navbar-header .navbar-toggle {
+  background-color: transparent;
+  border: none;
+}
+#navbar-wrapper .navbar .navbar-header .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
 #navbar-wrapper .navbar .navbar-header .navbar-brand {
   padding-left: 0;
   font-weight: 700;
   color: #fff;
 }
-#navbar-wrapper .navbar .navbar-nav .active a {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .active a {
   color: #fff;
   background-color: #285f8f;
 }
-#navbar-wrapper .navbar .navbar-nav .active a:active, #navbar-wrapper .navbar .navbar-nav .active a:focus, #navbar-wrapper .navbar .navbar-nav .active a:hover {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .active a:active, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .active a:focus, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .active a:hover {
   color: #fff;
   background-color: #285f8f;
 }
-#navbar-wrapper .navbar .navbar-nav li a {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav li a {
   font-weight: 700;
   color: #fff;
   text-transform: uppercase;
 }
-#navbar-wrapper .navbar .navbar-nav li a:active, #navbar-wrapper .navbar .navbar-nav li a:focus, #navbar-wrapper .navbar .navbar-nav li a:hover {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav li a:active, #navbar-wrapper .navbar .navbar-collapse .navbar-nav li a:focus, #navbar-wrapper .navbar .navbar-collapse .navbar-nav li a:hover {
   color: #fff;
   background-color: #2d6da3;
 }
-#navbar-wrapper .navbar .navbar-nav li a > .caret {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav li a > .caret {
   margin-left: 5px;
 }
-#navbar-wrapper .navbar .navbar-nav .open a {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open a {
   color: #337ab7;
   background-color: #fff;
 }
-#navbar-wrapper .navbar .navbar-nav .open a:active, #navbar-wrapper .navbar .navbar-nav .open a:focus, #navbar-wrapper .navbar .navbar-nav .open a:hover {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open a:active, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .open a:focus, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .open a:hover {
   color: #337ab7;
   background-color: #fff;
 }
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu {
   background-color: #fff;
   border: 0;
   border-top-left-radius: 0;
@@ -614,20 +611,20 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu .dropdown-header {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu .dropdown-header {
   font-size: 10px;
   color: #ccc;
   text-transform: uppercase;
 }
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu .divider {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu .divider {
   height: 1px;
   background-color: #eee;
 }
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu li a {
   font-weight: 400;
   text-transform: capitalize;
 }
-#navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a:active, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a:focus, #navbar-wrapper .navbar .navbar-nav .open .dropdown-menu li a:hover {
+#navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu li a:active, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu li a:focus, #navbar-wrapper .navbar .navbar-collapse .navbar-nav .open .dropdown-menu li a:hover {
   color: #fff;
   background-color: #337ab7;
 }
@@ -998,7 +995,6 @@ footer {
 .optional {
   margin-right: 5px;
   margin-left: 5px;
-  font-size: 12px;
   font-weight: 100;
 }
 

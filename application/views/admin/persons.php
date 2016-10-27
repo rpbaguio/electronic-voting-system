@@ -1,237 +1,264 @@
 <!-- Navbar -->
 <div id="navbar-wrapper">
-    <!-- <div class="navbar-affix" data-spy="affix"> -->
-        <div class="container-fluid">
-            <div class="row">
-                  <?= $this->load->view('admin/navbar', '', true) ?>
+	<!-- <div class="navbar-affix" data-spy="affix"> -->
+	<div class="container-fluid">
+		<div class="row">
+                  <?= $this->load->view('admin/navbar', '', true)?>
             </div>
-        </div>
-    <!-- </div> -->
+	</div>
+	<!-- </div> -->
 </div>
 
 <!-- Dashboard -->
 <div id="dashboard">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h2><?= $page_title ?></h2>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="btn-group-wrapper pull-right">
-                            <div class="btn-group">
-                                <a class="btn btn-default" data-toggle="modal" href="#add-person"><i class="material-icons md-18">person_add</i></a>
-                            </div>
-                        </div>
-                        List of Persons
-                    </div>
-                    <div class="panel-body">
-                        <table id="datatables" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Prefix</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Suffix</th>
-                                <th>Is Candidate?</th>
-                                <th>Is Validated?</th>
-                                <th>Is Voted?</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><?= $page_title ?></h2>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="btn-group-wrapper pull-right">
+							<div class="btn-group">
+								<a class="btn btn-default" data-toggle="modal"
+									href="#add-person"><i class="material-icons md-18">person_add</i></a>
+							</div>
+						</div>
+						List of Persons
+					</div>
+					<div class="panel-body">
+						<table id="datatables"
+							class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Prefix</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Suffix</th>
+									<th>Is Candidate?</th>
+									<th>Is Validated?</th>
+									<th>Is Voted?</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Modal (Update Person Info) -->
-<div class="modal fade" id="update-person-info" data-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Update Person</h4>
-            </div>
-            <?php echo form_open('admin/update_person_info', array('class' => 'update-person-info-form')) ?>
+<div class="modal fade" id="update-person-info" data-backdrop="static"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Update Person</h4>
+			</div>
+            <?php echo form_open('admin/update_person_info', array('class' => 'update-person-info-form'))?>
             <div class="modal-body">
-                <input type="hidden" name="id" value="">
+				<input type="hidden" name="id" value="">
 
-                <div id="ajax-preloader"></div>
+				<div id="ajax-preloader"></div>
 
-                <div id="ajax-response-update"></div>
+				<div id="ajax-response-update"></div>
 
-                <div class="row">
-                  <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div id="prefix" class="form-group">
-                                    <label class="control-label">Prefix</label>
-                                    <input type="text" class="form-control typeahead-prefix" name="prefix" value="<?= set_value('prefix') ?>" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div id="first-name" class="form-group">
-                                    <label class="control-label">First Name<span class="important">*</span></label>
-                                    <input type="text" class="form-control" name="first_name" value="<?= set_value('first_name') ?>" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div id="last-name" class="form-group">
-                                    <label class="control-label">Last Name<span class="important">*</span></label>
-                                    <input type="text" class="form-control" name="last_name" value="<?= set_value('last_name') ?>" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div id="suffix" class="form-group">
-                                    <label class="control-label">Suffix</label>
-                                    <input type="text" class="form-control" name="suffix" value="<?= set_value('suffix') ?>" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="birth-date" class="form-group">
-                                    <label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
-                                    <input type="text" class="form-control datetime-picker date-masking" name="birth_date" value="<?= set_value('birth_date') ?>" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="date-registered" class="form-group">
-                                    <label class="control-label">Date Registered</label>
-                                    <p class="help-block"></p>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                  <div class="col-md-5">
-                        <div class="row">
-                            <div class="col-md-12">
-                                  <div id="access-code" class="form-group">
-                                      <label class="control-label">Access Code</label>
-                                      <input type="text" class="form-control" name="access_code" value="" placeholder="">
-                                  </div>
-                            </div>
-                            <div class="col-md-12">
-                                  <div id="qrcode" class="text-center"></div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
+				<div class="row">
+					<div class="col-md-7">
+						<div class="row">
+							<div class="col-md-4">
+								<div id="prefix" class="form-group">
+									<label class="control-label">Prefix</label> <input type="text"
+										class="form-control typeahead-prefix" name="prefix"
+										value="<?= set_value('prefix') ?>" tabindex="1" placeholder="">
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div id="first-name" class="form-group">
+									<label class="control-label">First Name<span class="important">*</span></label>
+									<input type="text" class="form-control" name="first_name"
+										value="<?= set_value('first_name') ?>" tabindex="2"
+										placeholder="">
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div id="last-name" class="form-group">
+									<label class="control-label">Last Name<span class="important">*</span></label>
+									<input type="text" class="form-control" name="last_name"
+										value="<?= set_value('last_name') ?>" tabindex="3"
+										placeholder="">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div id="suffix" class="form-group">
+									<label class="control-label">Suffix</label> <input type="text"
+										class="form-control" name="suffix"
+										value="<?= set_value('suffix') ?>" tabindex="4" placeholder="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div id="birth-date" class="form-group">
+									<label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
+									<input type="text"
+										class="form-control datetime-picker date-masking"
+										name="birth_date" value="<?= set_value('birth_date') ?>"
+										tabindex="5" placeholder="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div id="date-registered" class="form-group">
+									<label class="control-label">Date Registered</label>
+									<p class="help-block"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="row">
+							<div class="col-md-12">
+								<div id="access-code" class="form-group">
+									<label class="control-label">Access Code</label> <input
+										type="text" class="form-control" name="access_code" value=""
+										placeholder="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div id="qrcode" class="text-center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            </div>
-            <div class="modal-footer">
-                <div>
-                    <button type="submit" class="btn btn-lg btn-primary btn-rounded-corner">Submit</button>
-                    <button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Back</button>
-                </div>
-            </div>
+			</div>
+			<div class="modal-footer">
+				<div>
+					<button type="submit"
+						class="btn btn-lg btn-primary btn-rounded-corner" tabindex="6">Submit</button>
+					<button type="button"
+						class="btn btn-lg btn-default btn-rounded-corner"
+						data-dismiss="modal">Back</button>
+				</div>
+			</div>
             <?php echo form_close(); ?>
         </div>
-    </div>
+	</div>
 </div>
 
 <!-- Modal (Add Person) -->
-<div class="modal fade" id="add-person" data-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Add Person</h4>
-            </div>
-            <?php echo form_open('admin/add_person', array('class' => 'add-person-form')) ?>
+<div class="modal fade" id="add-person" data-backdrop="static"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Add Person</h4>
+			</div>
+            <?php echo form_open('admin/add_person', array('class' => 'add-person-form'))?>
             <div class="modal-body">
 
-                <div id="ajax-preloader"></div>
+				<div id="ajax-preloader"></div>
 
-                <div id="ajax-response-add"></div>
+				<div id="ajax-response-add"></div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="first-name" class="form-group">
-                            <label class="control-label">First Name<span class="important">*</span></label>
-                            <input type="text" class="form-control" name="first_name" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div id="last-name" class="form-group">
-                            <label class="control-label">Last Name<span class="important">*</span></label>
-                            <input type="text" class="form-control" name="last_name" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div id="birth-date" class="form-group">
-                            <label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
-                            <input type="text" class="form-control datetime-picker date-masking" name="birth_date" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div id="gender" class="form-group">
-                            <label class="control-label">Gender<span class="important">*</span></label>
-                            <select class="form-control" name="gender">
-                                <!-- <option values="" selected>&mdash; Select &mdash;</option> -->
-                                <option values="Male">Male</option>
-                                <option values="Female">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+				<div class="row">
+					<div class="col-md-12">
+						<div id="first-name" class="form-group">
+							<label class="control-label">First Name<span class="important">*</span></label>
+							<input type="text" class="form-control" name="first_name" placeholder="">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="last-name" class="form-group">
+							<label class="control-label">Last Name<span class="important">*</span></label>
+							<input type="text" class="form-control" name="last_name"
+								placeholder="">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="birth-date" class="form-group">
+							<label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
+							<input type="text"
+								class="form-control datetime-picker date-masking"
+								name="birth_date" placeholder="">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div id="gender" class="form-group">
+							<label class="control-label">Gender<span class="important">*</span></label>
+							<select class="form-control" name="gender">
+								<!-- <option values="" selected>&mdash; Select &mdash;</option> -->
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+					</div>
+				</div>
 
-            </div>
-            <div class="modal-footer">
-                <div>
-                    <button type="submit" class="btn btn-lg btn-primary btn-rounded-corner">Submit</button>
-                    <button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Back</button>
-                </div>
-            </div>
+			</div>
+			<div class="modal-footer">
+				<div>
+					<button type="submit"
+						class="btn btn-lg btn-primary btn-rounded-corner">Submit</button>
+					<button type="button"
+						class="btn btn-lg btn-default btn-rounded-corner"
+						data-dismiss="modal">Back</button>
+				</div>
+			</div>
             <?php echo form_close(); ?>
         </div>
-    </div>
+	</div>
 </div>
 
 <!-- Modal (Delete Person) -->
-<div class="modal fade" id="delete-person" data-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Delete Person</h4>
-            </div>
-            <?php echo form_open('admin/delete_person', array('class' => 'delete-person-form')) ?>
+<div class="modal fade" id="delete-person" data-backdrop="static"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Delete Person</h4>
+			</div>
+            <?php echo form_open('admin/delete_person', array('class' => 'delete-person-form'))?>
             <div class="modal-body">
 
-                <input type="hidden" name="id" value="">
-                <div id="ajax-preloader"></div>
-                <div id="ajax-response-update"></div>
-                <h4>Are you sure you want to delete this record?</h4>
-                <hr/>
-                <ul>
-                    <li>If yes, click Delete to confirm.</li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <div>
-                    <button type="submit" class="btn btn-lg btn-danger btn-rounded-corner">Delete</button>
-                    <button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+				<input type="hidden" name="id" value="">
+				<div id="ajax-preloader"></div>
+				<div id="ajax-response-update"></div>
+				<h4>Are you sure you want to delete this record?</h4>
+				<hr />
+				<ul>
+					<li>If yes, click Delete to confirm.</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<div>
+					<button type="submit"
+						class="btn btn-lg btn-danger btn-rounded-corner">Delete</button>
+					<button type="button"
+						class="btn btn-lg btn-default btn-rounded-corner"
+						data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
             <?php echo form_close(); ?>
         </div>
-    </div>
+	</div>
 </div>
 
 <!-- Footer -->
-<?= $this->load->view('_shared/footer', '', true) ?>
+<?= $this->load->view('_shared/footer', '', true)?>
 
 <!-- jQuery -->
 <script type="text/javascript" src="<?= base_url('assets/script/jquery-2.1.4.min.js') ?>"></script>
@@ -246,6 +273,7 @@
 <script type="text/javascript" src="<?= base_url('assets/dt_picker/js/jquery.datetimepicker.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/script/jquery.maskedinput.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/script/typeahead.bundle.min.js'); ?>"></script>
+
 
 <script type="text/javascript">
     $(function () {
@@ -268,6 +296,7 @@
 
         // POST: Server side processing
         var data_tables = function() {
+           //$('#datatables thead tr:eq(0) th:eq(8)').html("This is a really long column title!");
             var table = $('#datatables').dataTable({
                 "processing": true,
                 "serverSide": true,
@@ -546,7 +575,6 @@
 
         // POST: Delete Person
         var delete_person = function() {
-
             $('#delete-person').on('show.bs.modal', function (e) {
 
                 // Reset form
@@ -587,7 +615,7 @@
 
                         var res = data;
 
-                        if (res.status == true) {
+                        if (res.status === true) {
 
                             // Hide preloader.
                             $('#delete-person #ajax-preloader').html('<p></p>').hide('fast');

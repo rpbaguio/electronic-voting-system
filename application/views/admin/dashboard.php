@@ -1,12 +1,10 @@
 <!-- Navbar -->
 <div id="navbar-wrapper">
-  <div class="navbar-affix" data-spy="affix">
       <div class="container-fluid">
           <div class="row">
                 <?= $this->load->view('admin/navbar', '', true) ?>
           </div>
       </div>
-  </div>
 </div>
 
 <!-- charts -->
@@ -244,20 +242,10 @@
           });
         }
 
-        // Navbar Affix
-        var navbar_affix = function() {
-            $('.navbar-affix').affix({
-                offset: {
-                    top: 50
-                }
-            });
-        }
-
         active_list();
         gender();
         status();
         //line();
-        navbar_affix();
     });
 </script>
 

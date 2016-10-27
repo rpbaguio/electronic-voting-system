@@ -16,7 +16,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="javascript:void(0)" id="placeholder" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">
-                    <?= role(user('id')); ?><span class="caret"></span></i>
+                    <?= role(user('id')); ?><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Manage</li>
