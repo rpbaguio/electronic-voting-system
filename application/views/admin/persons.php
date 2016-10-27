@@ -1,12 +1,10 @@
 <!-- Navbar -->
 <div id="navbar-wrapper">
-	<!-- <div class="navbar-affix" data-spy="affix"> -->
 	<div class="container-fluid">
 		<div class="row">
-                  <?= $this->load->view('admin/navbar', '', true)?>
-            </div>
+        	<?= $this->load->view('admin/navbar', '', true)?>
+        </div>
 	</div>
-	<!-- </div> -->
 </div>
 
 <!-- Dashboard -->
@@ -51,8 +49,7 @@
 </div>
 
 <!-- Modal (Update Person Info) -->
-<div class="modal fade" id="update-person-info" data-backdrop="static"
-	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update-person-info" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -75,41 +72,31 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div id="prefix" class="form-group">
-									<label class="control-label">Prefix</label> <input type="text"
-										class="form-control typeahead-prefix" name="prefix"
-										value="<?= set_value('prefix') ?>" tabindex="1" placeholder="">
+									<label class="control-label">Prefix</label> <input type="text" class="form-control" name="prefix" value="<?= set_value('prefix') ?>" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-8">
 								<div id="first-name" class="form-group">
 									<label class="control-label">First Name<span class="important">*</span></label>
-									<input type="text" class="form-control" name="first_name"
-										value="<?= set_value('first_name') ?>" tabindex="2"
-										placeholder="">
+									<input type="text" class="form-control" name="first_name" value="<?= set_value('first_name') ?>" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-8">
 								<div id="last-name" class="form-group">
 									<label class="control-label">Last Name<span class="important">*</span></label>
-									<input type="text" class="form-control" name="last_name"
-										value="<?= set_value('last_name') ?>" tabindex="3"
-										placeholder="">
+									<input type="text" class="form-control" name="last_name" value="<?= set_value('last_name') ?>" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div id="suffix" class="form-group">
-									<label class="control-label">Suffix</label> <input type="text"
-										class="form-control" name="suffix"
-										value="<?= set_value('suffix') ?>" tabindex="4" placeholder="">
+									<label class="control-label">Suffix</label> 
+									<input type="text" class="form-control" name="suffix" value="<?= set_value('suffix') ?>" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div id="birth-date" class="form-group">
 									<label class="control-label">Birth Date<span class="optional">YYYY-MM-DD</span></label>
-									<input type="text"
-										class="form-control datetime-picker date-masking"
-										name="birth_date" value="<?= set_value('birth_date') ?>"
-										tabindex="5" placeholder="">
+									<input type="text" class="form-control datetime-picker date-masking" name="birth_date" value="<?= set_value('birth_date') ?>" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -124,9 +111,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div id="access-code" class="form-group">
-									<label class="control-label">Access Code</label> <input
-										type="text" class="form-control" name="access_code" value=""
-										placeholder="">
+									<label class="control-label">Access Code</label> 
+									<input type="text" class="form-control" name="access_code" value="" placeholder="">
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -139,11 +125,8 @@
 			</div>
 			<div class="modal-footer">
 				<div>
-					<button type="submit"
-						class="btn btn-lg btn-primary btn-rounded-corner" tabindex="6">Submit</button>
-					<button type="button"
-						class="btn btn-lg btn-default btn-rounded-corner"
-						data-dismiss="modal">Back</button>
+					<button type="submit" class="btn btn-lg btn-primary btn-rounded-corner">Submit</button>
+					<button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Back</button>
 				</div>
 			</div>
             <?php echo form_close(); ?>
@@ -152,8 +135,7 @@
 </div>
 
 <!-- Modal (Add Person) -->
-<div class="modal fade" id="add-person" data-backdrop="static"
-	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="add-person" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -220,8 +202,7 @@
 </div>
 
 <!-- Modal (Delete Person) -->
-<div class="modal fade" id="delete-person" data-backdrop="static"
-	tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="delete-person" data-backdrop="static"tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -245,11 +226,8 @@
 			</div>
 			<div class="modal-footer">
 				<div>
-					<button type="submit"
-						class="btn btn-lg btn-danger btn-rounded-corner">Delete</button>
-					<button type="button"
-						class="btn btn-lg btn-default btn-rounded-corner"
-						data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-lg btn-danger btn-rounded-corner">Delete</button>
+					<button type="button" class="btn btn-lg btn-default btn-rounded-corner" data-dismiss="modal">Cancel</button>
 				</div>
 			</div>
             <?php echo form_close(); ?>
@@ -294,9 +272,8 @@
             });
         }
 
-        // POST: Server side processing
+        // POST: Person Data
         var data_tables = function() {
-           //$('#datatables thead tr:eq(0) th:eq(8)').html("This is a really long column title!");
             var table = $('#datatables').dataTable({
                 "processing": true,
                 "serverSide": true,
@@ -409,6 +386,7 @@
                     success: function (data) {
 
                         var res = data;
+                        var dt = moment(res.dt_registered).format('LLL'); // Format date & time with momentjs
 
                         if (res) {
                             // Hide preloader.
@@ -422,13 +400,12 @@
                             $('#update-person-info #suffix input').val(res.suffix);
                             $('#update-person-info #birth-date input').val(res.birth_date);
                             $('#update-person-info #access-code input').val(res.access_code);
-                            var dt = moment(res.dt_registered).format('llll'); // Format datetime with momentjs
                             $('#update-person-info #date-registered p').html(dt);
                             $('#update-person-info #qrcode').html('<img src="' + res.qrcode +'" />');
                         }
 
                         // For debugging
-                        console.log(res);
+                        //console.log(res);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // For debugging
@@ -649,15 +626,6 @@
             });
         }
 
-        // Navbar Affix
-        var navbar_affix = function() {
-            $('.navbar-affix').affix({
-                offset: {
-                    top: 50
-                }
-            });
-        }
-
         // Masking
         var input_masking = function() {
             $(".date-masking").mask("9999-99-99", {placeholder: "YYYY-MM-DD"});
@@ -697,10 +665,9 @@
         update_person_info();
         add_person();
         delete_person();
-        //navbar_affix();
         input_masking();
         datetime_picker();
-        auto_suggest_prefix();
+        //auto_suggest_prefix();
     });
 </script>
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2016-10-18 15:12:38
+Date: 2016-10-27 18:06:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,7 +53,7 @@ CREATE TABLE `tbl_person` (
 -- Records of tbl_person
 -- ----------------------------
 INSERT INTO `tbl_person` VALUES ('1', '1', '1', '0', '0', '0', '0', 'c4aaaad21e5abc061eb209bd9c8d5b91497c7b1271005a56bbe0ac21a128459f', '0', '0000-00-00 00:00:00', '2016-08-09 18:02:35');
-INSERT INTO `tbl_person` VALUES ('2', '2', '0', '0', '0', '0', '0', '', '0', '0000-00-00 00:00:00', '2016-10-12 09:10:57');
+INSERT INTO `tbl_person` VALUES ('2', '2', '1', '0', '0', '0', '0', '23e331eb8bbd171d7ec482779dad770f003aa501e1805c8b6334b7de20d5b847', '0', '2016-10-26 07:44:28', '2016-10-12 09:10:57');
 INSERT INTO `tbl_person` VALUES ('3', '2', '0', '0', '0', '0', '0', '', '0', '0000-00-00 00:00:00', '2016-10-12 09:11:29');
 INSERT INTO `tbl_person` VALUES ('4', '2', '0', '0', '0', '0', '0', '', '0', '0000-00-00 00:00:00', '2016-10-12 10:24:59');
 INSERT INTO `tbl_person` VALUES ('5', '2', '0', '0', '0', '0', '0', '', '0', '0000-00-00 00:00:00', '2016-10-12 10:25:23');
@@ -65,11 +65,13 @@ INSERT INTO `tbl_person` VALUES ('6', '2', '0', '0', '0', '0', '0', '', '0', '00
 DROP TABLE IF EXISTS `tbl_person_info`;
 CREATE TABLE `tbl_person_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prefix` varchar(25) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `avatar` varchar(100) DEFAULT NULL,
+  `suffix` varchar(25) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `avatar` varchar(100) NOT NULL,
   `birth_date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -77,12 +79,12 @@ CREATE TABLE `tbl_person_info` (
 -- ----------------------------
 -- Records of tbl_person_info
 -- ----------------------------
-INSERT INTO `tbl_person_info` VALUES ('1', 'Admin', '', 'Admin', 'Undefine', 'male-default-avatar.png', '0000-00-00');
-INSERT INTO `tbl_person_info` VALUES ('2', 'Raymond', '', 'Baguio', 'Male', null, '1983-10-19');
-INSERT INTO `tbl_person_info` VALUES ('3', 'Maria', '', 'Clara', 'Female', null, '1983-10-19');
-INSERT INTO `tbl_person_info` VALUES ('4', 'John', '', 'Doe', 'Male', null, '1983-10-19');
-INSERT INTO `tbl_person_info` VALUES ('5', 'Bernadith', '', 'Villegas', 'Female', null, '1983-10-19');
-INSERT INTO `tbl_person_info` VALUES ('6', 'Juan', '', 'Dela Cruz', 'Male', null, '1983-10-19');
+INSERT INTO `tbl_person_info` VALUES ('1', '', 'Admin', '', 'Admin', '', 'Undefine', 'male-default-avatar.png', '0000-00-00');
+INSERT INTO `tbl_person_info` VALUES ('2', 'Mr.', 'Raymond', '', 'Baguio', 'III, MSIT, MSCS, MBA, PhD', 'Male', '', '1983-10-19');
+INSERT INTO `tbl_person_info` VALUES ('3', '', 'Maria', '', 'Clara', '', 'Female', '', '1983-10-19');
+INSERT INTO `tbl_person_info` VALUES ('4', '', 'John', '', 'Doe', '', 'Male', '', '1983-10-19');
+INSERT INTO `tbl_person_info` VALUES ('5', '', 'Bernadith', '', 'Villegas', '', 'Female', '', '1983-10-19');
+INSERT INTO `tbl_person_info` VALUES ('6', '', 'Juan', '', 'Dela Cruz', '', 'Male', '', '1983-10-19');
 
 -- ----------------------------
 -- Table structure for `tbl_position`
