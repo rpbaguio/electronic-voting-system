@@ -130,3 +130,8 @@ local.properties
 
 # PDT-specific (PHP Development Tools)
 .buildpath
+
+
+### Others ###
+assets/img/misc/*-qrcode.png
+*/node_modules/project-task-runner/node_modules/*
